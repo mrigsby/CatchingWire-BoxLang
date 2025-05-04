@@ -2,7 +2,7 @@
 	<img src="https://raw.githubusercontent.com/coldbox-modules/cbwire/development/logo.png">
 </p>
 
-# Catching 🔥 Wire
+# Catching 🔥 Wire (BoxLang Edition!)
 
 ## An Introduction to CBWire 4
 
