@@ -1,0 +1,39 @@
+{
+	"$schema": "https://demotime.elio.dev/demo-time.schema.json",
+	"title": "04. Javascript Outside The Wire!s",
+	"description": "",
+	"demos": [
+		{
+			"title": "Introduction",
+			"steps": [
+				{ "action": "closeAll" },
+				{ "action": "openSlide", "path": ".demo/slides/04-01.md" }
+			]
+		},
+		{
+			"title": "Open Component (Model)",
+			"steps": [
+				{ "action": "highlight", "path": "wwwroot/wires/counter4.cfc", "position": "1:21" }
+			]
+		},
+		{
+			"title": "Open Template (View)",
+			"steps": [
+				{ "action": "highlight", "path": "wwwroot/wires/counter4.cfm", "position": "1:49" }
+			]
+		},
+		{
+			"title": "Open ColdBox View",
+			"steps": [
+				{ "action": "highlight", "path": "wwwroot/views/wiredemos/counter4.cfm", "position": "1:49" }
+			]
+		},
+		{
+			"title": "Open Demo URL",
+			"steps": [
+				{ "action": "openWebsite", "url": "http://127.0.0.1:8112/wiredemos/counter4", "openInVSCode": false }
+			]
+		}
+
+	]
+}

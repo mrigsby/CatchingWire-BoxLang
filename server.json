@@ -1,0 +1,26 @@
+{
+    "name":"catchingWire-boxlang",
+    "app":{
+        "serverHomeDirectory":".engine/boxlang",
+        "cfengine":"boxlang"
+    },
+    "web":{
+        "webroot":"wwwroot",
+        "rewrites":{
+            "enable":"true"
+        },
+        "http":{
+            "port":"8112"
+        }
+    },
+    "follow":true,
+    "jvm":{
+        "heapSize":"512",
+        "javaVersion":"openjdk21_jre",
+        "args":"-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8888"
+    },
+    "env":{},
+    "scripts":{
+        "onServerInitialInstall":"install bx-compat-cfml,bx-image,bx-csrf,bx-sqlite --noSave"
+    }
+}
