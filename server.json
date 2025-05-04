@@ -21,6 +21,6 @@
     },
     "env":{},
     "scripts":{
-        "onServerInitialInstall":"install bx-compat-cfml,bx-image,bx-csrf,bx-sqlite --noSave"
+        "onServerInitialInstall":"install bx-compat-cfml,bx-image,bx-csrf,bx-esapi,bx-sqlite --noSave"
     }
 }

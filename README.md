@@ -33,12 +33,13 @@ DEMO_USER_TITLE=Baron
 
 ### 2. Start CommandBox and install ColdBox dependencies
 
-Four commands to get going! Start CommandBox in the root of the repository, change into the `wwwroot` folder, install dependencies, and fire up the server!
+Five commands to get going! Start CommandBox in the root of the repository, change into the `wwwroot` folder, install dependencies, go back to the root directory, and fire up the server!
 
 ```bash
 box
 cd wwwroot
 install
+cd ..
 server start
 ```
 
@@ -51,6 +52,7 @@ server start
   - [CBSecurity](https://coldbox-security.ortusbooks.com/)
   - [BCrypt](https://forgebox.io/view/BCrypt)
   - [cbvalidation](https://coldbox-validation.ortusbooks.com/)
+  - [cbdebugger](https://forgebox.io/view/cbdebugger) *not fully supported in boxlang yet, but leaving it in for now in hopes it will soon!
   - [CBWire (Of Course!)](https://cbwire.ortusbooks.com/)
 - When `ENVIRONMENT=development` in the `.env` file you can automtically login using `COMMAND KEY + l` on mac and `WINDOWS KEY + l` on windows
 - Working [CBSecurity](https://coldbox-security.ortusbooks.com/) user authentication
@@ -65,15 +67,29 @@ server start
 
 ### [bx-compat-cfml](https://forgebox.io/view/bx-compat-cfml)
 
+To support CFML
+
 ### [bx-image](https://forgebox.io/view/bx-image)
+
+To support image resizing of profile image
 
 ### [bx-csrf](https://forgebox.io/view/bx-csrf)
 
+To support CBWIRE and `csrfGenerateToken()` and `csrfVerifyToken()`
+
 ### [bx-sqlite](https://forgebox.io/view/bx-sqlite)
+
+To support the demo SQLite database
+
+### [bx-esapi](https://forgebox.io/view/bx-esapi)
+
+To support `encodeFor*` 
 
 ### Troubleshooting Tips
 
 1. If the server is having trouble finding the SQLite Database when started up, you can put the absolute path for the SQLite Database: `DB_PATH` environment variable in `.env` replacing the relative path of `DB/catchingWire.db` (Note: If you change the `.env` file make sure to restart commandbox to refresh the environment variables)
+
+2. If you want to run `fwreinit` from the command line you will need to change into the `wwwroot` directory with `cd wwwroot`
 
 ## Other Stuff
 

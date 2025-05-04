@@ -37,6 +37,28 @@ component extends="coldbox.system.EventHandler" secured {
 		return "<h3>DONE!</h3>";
 	}
 
+	function fixTimestamps( event, rc, prc ){
+		// fix timestamps in the database for SQLite DB
+		var oUsers = getInstance( "User" ).get();
+
+		for( oUser in oUsers ){
+			writeOutput( "Updating: " & oUser.getEmail() & " ... " );
+			if( find( ":", oUser.getdt_lastlogin() ) ){
+				oUser.setdt_lastlogin( createODBCDateTime( oUser.getdt_lastlogin() ) );
+			}
+			if( find( ":", oUser.getdt_created() ) ){
+				oUser.setdt_created( createODBCDateTime( oUser.getdt_created() ) );
+			}
+			oUser.save();
+			writeOutput( "Saving!<br>" );
+
+		}
+
+		writeDump( var=oUsers, top=3, label="Users" );
+
+		return "<h3>DONE!</h3>";
+	}
+
 	/**
 	 * --------------------------------------------------------------------------
 	 * Implicit Actions
@@ -46,10 +68,18 @@ component extends="coldbox.system.EventHandler" secured {
 	function onAppInit( event, rc, prc ){
 		// set demo user (id = 1) to settings in .env or system settings
 		if( len( getSystemSetting( "DEMO_USER_EMAIL", "" ) ) && len( getSystemSetting( "DEMO_USER_PASSWORD", "" ) ) ){
-
-
-
-			}
+			var oUser = getInstance( "User" ).where("id",1).first();
+			oUser.setAccountType( "admin" )
+				.setActive( true )
+				.setEmail( getSystemSetting( "DEMO_USER_EMAIL" ) )
+				.setPassword( getSystemSetting( "DEMO_USER_PASSWORD" ) )
+				.setFname( getSystemSetting( "DEMO_USER_FIRST_NAME", "" ) )
+				.setLname( getSystemSetting( "DEMO_USER_LAST_NAME", "" ) )
+				.setTitle( getSystemSetting( "DEMO_USER_TITLE", "" ) )
+				.setPermissions( [ "admin", "user" ] )
+				.setRoles( [ "admin" ] )
+				.save();
+		}
 		application.cbController.setSetting(
 			"profilePicPath",
 			application.cbController.getSetting("APPLICATIONPATH") & "includes/images/profiles/"
