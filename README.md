@@ -76,6 +76,8 @@ server start
 
 1. If the server is having trouble finding the SQLite Database when started up, you can put the absolute path for the SQLite Database: `DB_PATH` environment variable in `.env` replacing the relative path of `DB/catchingWire.db` (Note: If you change the `.env` file make sure to restart commandbox to refresh the environment variables)
 
+2. If you want to run `fwreinit` from the command line you will need to change into the `wwwroot` directory with `cd wwwroot`
+
 ## Other Stuff
 
 #### SQLite Tools

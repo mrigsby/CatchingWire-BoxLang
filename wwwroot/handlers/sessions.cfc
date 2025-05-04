@@ -28,29 +28,21 @@ component {
 
 		if ( result.hasErrors() ) {
 			flash.put( "login_form_errors", result.getAllErrorsAsStruct() );
-			// event.auditLogLoginFailed( result.getAllErrorsAsStruct() );
-			// redirectBack();
 			back();
 			return;
 		}
 
 		try{
-			auth().authenticate( rc.email, rc.password );
-			// event.auditLogLogin();
+			var oUser = auth().authenticate( rc.email, rc.password );
+			oUser.setdt_lastlogin( now() ).save();
 			relocate( uri = flash.get( "_securedUrl", "/" ) );
 		} catch ( any e ) {
-			// writeDump( e.message );
-			// writeDump( var="#auth()#", top="2", expand="false" )
-			// abort;
-			flash.put( "login_form_errors", { "login" : "Invalid Credentials" } );
-			// event.auditLogLoginFailed( includeScopes = true );
-			// redirectBack();
+			flash.put( "login_form_errors", { "login" : "Invalid Credentials #e.message#" } );
 			back();
 		}
 	} // create()
 
 	function delete( event, rc, prc ){
-		// event.auditLogLogout();
 		auth().logout();
 		relocate( uri = "/" );
 	} // delete()
@@ -73,30 +65,20 @@ component {
 			// event.auditLogLostPassFailed( includeScopes = true );
 			return { "success" : false, "msg" : "Email address not found. Please try again", "e" : e };
 		}
-		// Use JOB for sending email.
-		// getInstance( "jobs.users.sendLostPassEmail" )
-		// 	.setProperties({
-		// 		"userid"		: oUser.getID(),
-		// 		"resetLink" 	: event.buildLink( 'reset-password.XXXXXXX' )
-		// 	})
-		// 	.dispatch();
-
 		// process request and send email immediatly
 		var passwordReset = passwordResetService.newEntity().setUserID( oUser.getID() ).save();
 		var resetLink = event.buildLink( 'reset-password.#passwordReset.getUUID()#' );
 		mailService.newMail(
-			to         : oUser.getEmail(),
-			subject    : "Password Reset",
-			bodyTokens : {
-				fname    	: oUser.getFname(),
-				lname 		: oUser.getLname(),
-				link    	: resetLink
-			}
-		)
-		.setView( view : "emails/passwordReset", layout : "email" )
-		.send()
-
-
+				to         : oUser.getEmail(),
+				subject    : "Password Reset",
+				bodyTokens : {
+					fname    	: oUser.getFname(),
+					lname 		: oUser.getLname(),
+					link    	: resetLink
+				}
+			)
+			.setView( view : "emails/passwordReset", layout : "email" )
+			.send()
 		return { "success" : true, "msg" : "Success! An email is being sent to #jsStringFormat(rc.email)# with instructions to reset your password." };
 	} // passResetRequest()
 

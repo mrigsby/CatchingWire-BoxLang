@@ -36,8 +36,8 @@
 							<td>#customer.lname#, #customer.fname#</td>
 							<td>#customer.email#</td>
 							<td>#customer.title#</td>
-							<td>#dateFormat( customer.dt_created, "mm/dd/yyyy" )#</td>
-							<td>#dateTimeFormat( customer.dt_lastlogin, "short" )#</td>
+							<td>#dateFormat( dateAdd( "s", customer.dt_created/1000, "January 1 1970 00:00:00" ), "short" )#</td>
+							<td>#dateTimeFormat( dateAdd( "s", customer.dt_lastlogin/1000, "January 1 1970 00:00:00" ), "short" )#</td>
 							<td>
 								<a href="#event.buildLink( "customers." & customer.id )#" class="btn btn-success btn-sm" style="--bs-btn-font-size: 0.65rem;">
 									<i class="bi bi-pencil-square"></i> Edit
