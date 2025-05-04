@@ -33,12 +33,13 @@ DEMO_USER_TITLE=Baron
 
 ### 2. Start CommandBox and install ColdBox dependencies
 
-Four commands to get going! Start CommandBox in the root of the repository, change into the `wwwroot` folder, install dependencies, and fire up the server!
+Five commands to get going! Start CommandBox in the root of the repository, change into the `wwwroot` folder, install dependencies, go back to the root directory, and fire up the server!
 
 ```bash
 box
 cd wwwroot
 install
+cd ..
 server start
 ```
 
