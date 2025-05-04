@@ -52,6 +52,7 @@ server start
   - [CBSecurity](https://coldbox-security.ortusbooks.com/)
   - [BCrypt](https://forgebox.io/view/BCrypt)
   - [cbvalidation](https://coldbox-validation.ortusbooks.com/)
+  - [cbdebugger](https://forgebox.io/view/cbdebugger) *not fully supported in boxlang yet, but leaving it in for now in hopes it will soon!
   - [CBWire (Of Course!)](https://cbwire.ortusbooks.com/)
 - When `ENVIRONMENT=development` in the `.env` file you can automtically login using `COMMAND KEY + l` on mac and `WINDOWS KEY + l` on windows
 - Working [CBSecurity](https://coldbox-security.ortusbooks.com/) user authentication
@@ -66,11 +67,23 @@ server start
 
 ### [bx-compat-cfml](https://forgebox.io/view/bx-compat-cfml)
 
+To support CFML
+
 ### [bx-image](https://forgebox.io/view/bx-image)
+
+To support image resizing of profile image
 
 ### [bx-csrf](https://forgebox.io/view/bx-csrf)
 
+To support CBWIRE and `csrfGenerateToken()` and `csrfVerifyToken()`
+
 ### [bx-sqlite](https://forgebox.io/view/bx-sqlite)
+
+To support the demo SQLite database
+
+### [bx-esapi](https://forgebox.io/view/bx-esapi)
+
+To support `encodeFor*` 
 
 ### Troubleshooting Tips
 
